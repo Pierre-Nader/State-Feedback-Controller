@@ -1,0 +1,42 @@
+#include <StateSpaceControl.h>
+
+Model<4, 2, 4> biRotor;
+StateSpaceController<4,2> controller(biRotor);
+
+
+void init(){
+// adding model parameters matrices A, B, C, D
+
+  biRotor.A = {0, 1, 0, 0, 
+               0, 0, 0, 0
+               0, 0, 0, 1,
+               0, 0, 0, 0};
+             
+  biRotor.B = {0, 1,  
+                , ,
+               0, 0,
+                , };
+
+  biRotor.C = {0, 1, 0, 0, 
+               0, 0, 0, 1};
+
+   biRotor.D = 0;
+
+  // adding gains of controller 
+  controller.K = {6.16805, 0.948945, 11.8238, 1.81908
+                 -6.16805, -0.948945, 11.8238, 1.81908};
+
+  // setting setpoint for controller
+  controller.r = {0, 0, 0, 0};
+}
+
+
+// control loop function
+
+float updateAct(){
+  float uAct = 0;
+  controller.update(y, dt);
+  uAct = controller.u;
+}
+
+// slight problem concerning input of function due to HLC not being determined
