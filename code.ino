@@ -1,11 +1,12 @@
-// Side note, required libraries -> BasicLinearAlgebra and StateSpace Control
+// Side note, required libraries -> BasicLinearAlgebra and StateSpaceControl
 
 // https://github.com/tomstewart89/BasicLinearAlgebra
 // https://github.com/tomstewart89/StateSpaceControl
 
 #include <StateSpaceControl.h>
 
-// objects for 
+// NOTE 1: Tags for preventation of redefinition of header files will be added later
+ 
 Model<4, 2, 4> biRotor;
 StateSpaceController<4, 2> controller(biRotor);
 
@@ -14,6 +15,8 @@ const float dt = 0.01;
 
 // output array for actuators / ESC
 float actVals[2];
+
+// NOTE 2: void setup and loop functions will be removed in header file
 
 void setup() {
   
@@ -67,6 +70,8 @@ void initController(){
   controller.r = {0, 0, 0, 0};
   
 }
+
+// NOTE 3: parameters of function updateAct, I am still unsure of but these are correct
 
 void updateAct(float observerValues[], float actVals[]){
 
