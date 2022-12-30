@@ -73,7 +73,7 @@ void initController(){
 
 // NOTE 3: parameters of function updateAct, I am still unsure of but these are correct
 
-void updateAct(float observerValues[], float actVals[]){
+void updateAct(float *observerValues, float *actVals){
 
   //creating matrix object to take information of observed states from ESP32
   
